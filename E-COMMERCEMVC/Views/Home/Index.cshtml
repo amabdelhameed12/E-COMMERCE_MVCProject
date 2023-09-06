@@ -1,0 +1,59 @@
+﻿@model List<Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_Layout";
+}
+
+
+
+
+
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div id="Card" class="card col-sm-4 mb-4" style="width: 18rem; margin:20px">
+            <img src="@item.ImageUrl" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5>@item.Name</h5>
+                <h5 class="card-text">@item.Price</h5>
+
+                <a href="" class="btn btn-primary">ADD CARD</a>
+                <br>
+                <a href="/Product/Index?id=@item.ID" >Show Details</a>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@section Scripts{
+
+    <script>
+        function goToRead() {
+            window.location.href = "https://www.google.com.eg";
+        }
+      var Card = document.getElementById("Card")
+        Card.addEventListener("click", goToRead)
+
+    </script>
+}*@
+

@@ -1,0 +1,34 @@
+﻿@model List<Product>
+
+
+  @foreach(var p in Model)
+{
+    <h1>@p?.Name</h1>
+}
+
+    
+
+@section Scripts {
+
+
+    <script>
+
+
+        $(document).ready(function () {
+            var data = localStorage.getItem('userCart');
+            console.log(data)
+            if (data) {
+                $.ajax({
+                    url: '/Card/Index',
+                    type: 'POST',
+                    data: { data: data },
+                    success: function (result) {
+                        alert('Data processed successfully!');
+                    },
+                    error: function (error) {
+                        alert('Error processing data!');
+                    }
+                });
+            }
+    </script>
+}

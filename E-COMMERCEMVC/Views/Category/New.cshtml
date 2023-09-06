@@ -1,0 +1,43 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "New";
+    SelectList ProdlistItems = new SelectList(ViewBag.Prods, "ID", "Name");
+
+}
+
+<h1>New</h1>
+<form method="post" *action="/Category/New">
+    <div>
+        <label>Name</label>
+        <input type="text" class="form-control" name="name" id="name" value="@Model?.Name" />
+    </div>
+    <div>
+        <label>ProdId</label>
+        <select name="ProdId" id="ProdId" class="form-control" asp-items="ProdlistItems"
+                onchange="GetProd()"></select>
+    </div>
+
+        <input type="submit" class="btn-danger " value="Create" />
+</form>
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+        function GetProd() {
+            var Prod_id = document.getElementById("ProdId").value;
+
+            $.ajax(
+                {
+                    url: "/Categort/GetProdByCatId?CatId=" + Prod_id,
+                    success: function (result) {
+                        console.log(result);
+                        for (let item of result) {
+
+                            document.getElementById("Products").innerHTML +=
+                                "<option value='" + item.ID + "'>" + item.Name + "</option>"
+                        }
+                    }
+                });
+        }
+    </script>
+}
+

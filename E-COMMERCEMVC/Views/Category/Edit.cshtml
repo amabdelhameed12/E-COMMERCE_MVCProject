@@ -1,0 +1,33 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<form method="post">
+    <div>
+        <label>Name</label>
+        <input type="text" class="form-control" name="name" id="name" value="@Model?.Name" />
+    </div>
+    
+    <div>
+        <label>ProdId</label>
+        <select name="Prod_id" id="Prod_id" class="form-control">
+            @foreach (Product ProdItem in ViewBag.Prods)
+            {
+                @if (Model.ID == ProdItem.ID)
+                {
+                    <option value="@ProdItem.ID" selected>@ProdItem.Name</option>
+                }
+                else
+                {
+                    <option value="@ProdItem.ID">@ProdItem.Name</option>
+                }
+            }
+        </select>
+
+    </div>
+
+    <input type="submit" class="btn-danger " value="Save" />
+</form>
